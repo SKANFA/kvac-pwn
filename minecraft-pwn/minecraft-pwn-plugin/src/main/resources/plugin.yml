@@ -1,0 +1,9 @@
+name: Artefacts
+main: com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.PluginEntryPoint
+version: 1
+api-version: 1.13
+depend: [ProtocolLib]
+commands:
+   artefact:
+      description: Your description
+      usage: /artefact give <player> <type> <count>
