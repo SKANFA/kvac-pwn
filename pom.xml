@@ -8,6 +8,7 @@
     <modules>
         <module>pwn-bots-root</module>
         <module>minecraft-pwn</module>
+        <module>pwn-server</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,6 +16,14 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <org.projectlombok:lombok.version>1.18.12</org.projectlombok:lombok.version>
+
+        <!-- LOGS-->
+        <org.slf4j.version>2.0.0-alpha1</org.slf4j.version>
+        <!-- LOGS-->
+
+        <!-- TOR-LIB -->
+        <app.betterprice.lib.orchid.version>1.0.3</app.betterprice.lib.orchid.version>
+        <!-- TOR-LIB -->
 
         <!--MINECRAFT-->
         <minecraft.spigot.bukkit.version>1.15.2-R0.1-SNAPSHOT</minecraft.spigot.bukkit.version>
@@ -30,6 +39,19 @@
             <version>${org.projectlombok:lombok.version}</version>
             <type>jar</type>
         </dependency>
+        <!-- LOGS-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
+        <!-- LOGS-->
+
     </dependencies>
     <build>
         <plugins>

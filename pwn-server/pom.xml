@@ -6,10 +6,7 @@
         <artifactId>kvac-pwn-root</artifactId>
         <version>1.0.0</version>
     </parent>
-    <groupId>com.github.kvac.pwn.kvac-pwn-root</groupId>
-    <artifactId>pwn-bots-root</artifactId>
+    <groupId>com.github.kvac.pwn.kvac-pwn-root.server</groupId>
+    <artifactId>pwn-server</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>pwn-bot-common</module>
-    </modules>
 </project>
