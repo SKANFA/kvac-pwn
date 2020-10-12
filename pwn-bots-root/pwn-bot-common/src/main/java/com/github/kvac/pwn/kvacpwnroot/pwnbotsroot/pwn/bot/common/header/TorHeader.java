@@ -6,17 +6,32 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TorHeader {
 
     Logger logger = LoggerFactory.getLogger(getClass());
+    @Getter
     TorClient client;
+
+    @Getter
+    @Setter
+    private boolean started;
 
     public void init() {
         client = new TorClient();
         client.addInitializationListener(createInitalizationListner());
+    }
+
+    public void start() {
+        client.start();
+    }
+
+    public void listen() {
+        client.enableSocksListener(3333);
     }
 
     private TorInitializationListener createInitalizationListner() {
@@ -30,6 +45,7 @@ public class TorHeader {
             public void initializationCompleted() {
                 logger.info("Tor is ready to go!");
                 //TODO MOVE
+                setStarted(true);
                 try {
                     Socket socket = client.getSocketFactory().createSocket("y3b7ch6eft6j3pwz.onion", 8000);
                     PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
@@ -47,4 +63,5 @@ public class TorHeader {
             }
         };
     }
+
 }

