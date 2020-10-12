@@ -20,7 +20,6 @@
         <minecraft.spigot.bukkit.version>1.15.2-R0.1-SNAPSHOT</minecraft.spigot.bukkit.version>
         <minecraft.ProtocolLib.version>4.5.1</minecraft.ProtocolLib.version>
         <!--MINECRAFT-->
-
     </properties>
 
 
