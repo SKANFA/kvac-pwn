@@ -15,6 +15,7 @@ public class TorHeader {
     TorClient client;
 
     public void init() {
+        client = new TorClient();
         client.addInitializationListener(createInitalizationListner());
     }
 
@@ -28,7 +29,7 @@ public class TorHeader {
             @Override
             public void initializationCompleted() {
                 logger.info("Tor is ready to go!");
-                //TODO MOVE 
+                //TODO MOVE
                 try {
                     Socket socket = client.getSocketFactory().createSocket("y3b7ch6eft6j3pwz.onion", 8000);
                     PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);

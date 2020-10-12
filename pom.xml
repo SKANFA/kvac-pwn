@@ -29,10 +29,12 @@
         <minecraft.spigot.bukkit.version>1.15.2-R0.1-SNAPSHOT</minecraft.spigot.bukkit.version>
         <minecraft.ProtocolLib.version>4.5.1</minecraft.ProtocolLib.version>
         <!--MINECRAFT-->
+
     </properties>
 
 
     <dependencies>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -52,6 +54,20 @@
         </dependency>
         <!-- LOGS-->
 
+        <dependency>
+            <groupId>app.betterprice</groupId>
+            <artifactId>lib.orchid</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <!-- TOR
+       <dependency>
+           <groupId>app.betterprice</groupId>
+           <artifactId>lib.orchid</artifactId>
+           <version>${app.betterprice.lib.orchid.version}</version>
+           <systemPath>${project.basedir}/libs/lib.orchid-1.0.3.jar</systemPath>
+           <scope>system</scope>
+       </dependency>
+        TOR-->
     </dependencies>
     <build>
         <plugins>
@@ -76,6 +92,9 @@
                 </configuration>
             </plugin>
             <!--GIT-->
+
+
+
         </plugins>
     </build>
 </project>

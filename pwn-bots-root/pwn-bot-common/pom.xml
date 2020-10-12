@@ -10,16 +10,9 @@
     <artifactId>pwn-bot-common</artifactId>
     <packaging>jar</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>app.betterprice</groupId>
-            <artifactId>lib.orchid</artifactId>
-            <version>${app.betterprice.lib.orchid.version}</version>
-        </dependency>
-    </dependencies>
+
 
     <build>
-
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
