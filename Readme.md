@@ -1,7 +1,17 @@
+# Dependencies
 
+## server side dep.
+```sh
+git clone https://github.com/aadnk/ProtocolLib github.com.aadnk.ProtocolLib 
+cd github.com.aadnk.ProtocolLib
+mvn clean install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
+```
+after compilation, place the target/ProtocolLib.jar file in the plugins directory on the minecraft server
 
-
-DEP:
-build with 'mvn clean install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true'
-https://github.com/aadnk/ProtocolLib
-
+## AND
+compile the dependency for the shell:
+```sh
+git clone https://github.com/KVAC/lib.orchid github.com.KVAC.lib.orchid
+cd github.com.KVAC.lib.orchid
+mvn clean install
+```
