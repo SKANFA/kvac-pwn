@@ -1,5 +1,7 @@
 package com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin;
 
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.header.PluginHeader;
+
 public class SpamUtils {
 
     public static boolean spamContains(String forCheck) {
@@ -19,7 +21,7 @@ public class SpamUtils {
     }
 
     public static boolean containsDomain(String input) {
-        for (String string : PluginEntryPoint.domains) {
+        for (String string : PluginHeader.getDomains()) {
             if (input.toLowerCase().contains(string.toLowerCase())) {
                 return true;
             }

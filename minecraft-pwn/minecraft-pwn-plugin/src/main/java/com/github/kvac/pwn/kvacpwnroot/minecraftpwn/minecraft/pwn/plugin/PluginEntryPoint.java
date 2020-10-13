@@ -9,13 +9,17 @@ import com.comphenix.protocol.events.PacketListener;
 import com.comphenix.protocol.wrappers.WrappedServerPing;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Artefact;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Artefact.ArtefactType;
-import java.io.File;
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.commands.CommandAddART;
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.header.PluginHeader;
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.threads.ArtefactInventTask;
+import static com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.utils.DigitUtilities.randDouble;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -44,34 +48,22 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PluginEntryPoint extends JavaPlugin implements Listener {
-
-    // WEAPON
-    static char wws = ' ';
-
-    private static final String WEAPON_lore0 = Character.toString(wws);
 
     ArtefactInventTask artefactInventTask;
     PluginEntryPoint plugin = this;
 
-    public static ArrayList<String> domains = new ArrayList<String>();
+    Logger logger = LoggerFactory.getLogger(getClass());
 
-    private ProtocolManager protocolManager;
-
-    boolean fakeOnline = false;
-
-    public static File pingFile = new File("PING_LOG");
+    private ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
 
     }
-
-    boolean random = true;
-    int fake = 140;
-    int min = 40;
-    int max = 20000;
 
     public static void main(String[] args) {
 
@@ -80,31 +72,38 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation") // OUT_SERVER_INFO
     @Override
     public void onEnable() {
-        protocolManager = ProtocolLibrary.getProtocolManager();
+
         protocolManager.addPacketListener((PacketListener) new PacketAdapter(PacketAdapter
                 .params((Plugin) this, new PacketType[]{PacketType.Status.Server.OUT_SERVER_INFO}).optionAsync()) {
+            @Override
             public void onPacketSending(PacketEvent event) {
                 if (event.getPacket().getServerPings().read(0) instanceof WrappedServerPing) {
                     try {
-                        if (!pingFile.exists()) {
-                            pingFile.createNewFile();
+                        if (!PluginHeader.pingFile.exists()) {
+                            PluginHeader.pingFile.createNewFile();
                         }
-                        Files.write(pingFile.toPath(), (event.getPlayer().getAddress().toString() + '\n').getBytes(),
-                                StandardOpenOption.APPEND);
+                        Files.write(
+                                PluginHeader.pingFile.toPath(),
+                                (event.getPlayer().getAddress().toString() + '\n').getBytes(StandardCharsets.UTF_8),
+                                StandardOpenOption.APPEND
+                        );
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    if (fakeOnline) {
-                        WrappedServerPing ping = (WrappedServerPing) event.getPacket().getServerPings().read(0);
-                        ping.setPlayersMaximum(max);
-                        if (random) {
-                            Random r = new Random();
-                            int online = Math.abs(r.nextInt() % (max - min) + 1 + min);
-                            ping.setPlayersOnline(online);
-                        } else {
-                            ping.setPlayersOnline(fake);
+                        if (PluginHeader.fakeOnline) {
+                            WrappedServerPing ping = (WrappedServerPing) event.getPacket().getServerPings().read(0);
+                            ping.setPlayersMaximum(PluginHeader.max);
+                            if (PluginHeader.random) {
+                                SecureRandom r = new SecureRandom();
+                                int online = Math.abs(
+                                        r.nextInt() % (PluginHeader.max - PluginHeader.min) + 1 + PluginHeader.min
+                                );
+
+                                ping.setPlayersOnline(online);
+                            } else {
+                                ping.setPlayersOnline(PluginHeader.fake);
+                            }
                         }
+                    } catch (IOException e) {
+                        logger.error("", e);
                     }
                 }
             }
@@ -112,12 +111,12 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
 
         for (int i = 0; i <= 9; i++) {
             for (int j = 0; j <= 9; j++) {
-                domains.add(i + ":" + j);
+                PluginHeader.getDomains().add(i + ":" + j);
             }
         }
-        domains.add(".com");
+        PluginHeader.getDomains().add(".com");
+        logger.info("JDCSPlugin.onEnable()");
 
-        System.out.println("JDCSPlugin.onEnable()");
         checkAndInitBackInventory();
         this.getCommand("artefact").setExecutor(new CommandAddART());
         getServer().getPluginManager().registerEvents(this, this);
@@ -279,7 +278,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                 if (lore.size() > 0) {
                     String lore0 = lore.get(0);
                     // есть лор оружия
-                    if (lore0.equals(WEAPON_lore0)) {
+                    if (lore0.equals(PluginHeader.getWEAPON_LORE())) {
                         if (itemInMainHand.equals(Material.WOODEN_SWORD)) {
                             Projectile projectile2 = event.getPlayer().launchProjectile(Arrow.class);
                             Vector vel = event.getPlayer().getLocation().getDirection().multiply(100);
@@ -357,7 +356,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public static void pkm(PlayerInteractEvent event) {
+    public void pkm(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
         Action action = event.getAction();
@@ -375,12 +374,12 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                     if (lore != null && lore.size() > 0) {
                         boolean fireActivator = false;
                         for (String string : lore) {
-                            if (string.equals(WEAPON_lore0)) {
+                            if (string.equals(PluginHeader.getWEAPON_LORE())) {
                                 fireActivator = true;
                             }
                         }
                         if (fireActivator) {
-                            ArrayList<LivingEntity> LivingEntityList = new ArrayList<LivingEntity>();
+                            ArrayList<LivingEntity> LivingEntityList = new ArrayList<>();
                             List<Entity> entitySList = player.getNearbyEntities(30, 30, 30);
                             for (Entity entity : entitySList) {
                                 try {
@@ -388,7 +387,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                                         LivingEntityList.add((LivingEntity) entity);
                                     }
                                 } catch (Exception e) {
-                                    e.printStackTrace();
+                                    logger.error("", e);
                                 }
                             }
                             int fireCount = 0;
@@ -403,7 +402,6 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
 
                                 if (!(flocBlock.getType().equals(Material.WATER)
                                         || flocEyesBlock.getType().equals(Material.WATER))) {
-
                                     if (liv.getFireTicks() == -1) {
                                         liv.setFireTicks(20 * 10);
                                         fireCount = fireCount + 1;
@@ -424,12 +422,6 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                 }
             }
         }
-    }
-
-    private static double randDouble(double min, double max) {
-        Random r = new Random();
-        double randomValue = min + (max - min) * r.nextDouble();
-        return randomValue;
     }
 
     private void stopBackInventory() {

@@ -1,5 +1,6 @@
-package com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin;
+package com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.threads;
 
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.PluginEntryPoint;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Artefact;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Artefact.ArtefactType;
 import java.util.Collection;
@@ -9,9 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ArtefactInventTask extends BukkitRunnable {
 
+    Logger logger = LoggerFactory.getLogger(getClass());
     @Getter
     @Setter
     private boolean stopeed = false;
@@ -30,7 +34,7 @@ public class ArtefactInventTask extends BukkitRunnable {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error("", e);
             }
             if (stopeed == true) {
                 break;
@@ -72,7 +76,7 @@ public class ArtefactInventTask extends BukkitRunnable {
                         }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.error("", e);
                 }
             }
         } while (isStopeed() == false);
@@ -82,5 +86,4 @@ public class ArtefactInventTask extends BukkitRunnable {
     public synchronized void cancel() throws IllegalStateException {
         stopeed = true;
     }
-
 }

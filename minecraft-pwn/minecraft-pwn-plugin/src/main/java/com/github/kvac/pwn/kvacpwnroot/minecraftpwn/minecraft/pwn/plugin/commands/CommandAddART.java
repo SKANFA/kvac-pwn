@@ -1,9 +1,10 @@
-package com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin;
+package com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.commands;
 
-import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Sluda;
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.Permissions;
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Artefact.ArtefactType;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Object639;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Pillow;
-import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Artefact.ArtefactType;
+import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Sluda;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

@@ -36,6 +36,7 @@ public class Init {
                 logger.error("", e);
             }
         });
+
         worker.start();
         worker.join();
     }
