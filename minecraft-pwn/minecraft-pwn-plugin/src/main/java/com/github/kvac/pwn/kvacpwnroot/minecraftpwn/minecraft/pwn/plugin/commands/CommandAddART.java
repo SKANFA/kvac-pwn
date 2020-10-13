@@ -5,6 +5,8 @@ import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefac
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Object639;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Pillow;
 import com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts.Sluda;
+import java.util.ArrayList;
+import java.util.Collection;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -15,9 +17,10 @@ import org.bukkit.entity.Player;
 public class CommandAddART implements CommandExecutor {
 
     enum commands {
-        give, nulled
+        GIVE, NULLED
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] cmdArgs) {
         StringBuilder errorBuilder = new StringBuilder();
         try {
@@ -26,6 +29,23 @@ public class CommandAddART implements CommandExecutor {
             if (cmdArgs.length == 0) {
                 return false;
             }
+            if (cmdArgs.length == 1) {//give ?
+                Collection<? extends Player> players = sender.getServer().getOnlinePlayers();
+                ArrayList<Player> pList = new ArrayList<>(players);
+                ArrayList<String> names = new ArrayList<>();
+                pList.forEach(player -> {
+                    names.add(player.getName());
+                });
+                sender.sendMessage("change player from list:" + names.toString());
+                return false;
+            }
+            if (cmdArgs.length == 2) {
+                sender.sendMessage("2");
+            }
+            if (cmdArgs.length == 3) {
+                sender.sendMessage("3");
+
+            }
 
             commands cmd = null;
             try {
@@ -33,12 +53,12 @@ public class CommandAddART implements CommandExecutor {
             } catch (Exception e) {
                 playerSender.sendMessage("Доступные действия:");
                 for (commands cmds : commands.values()) {
-                    if (cmds.toString().equals(commands.nulled.toString())) {
+                    if (cmds.toString().equals(commands.NULLED.toString())) {
                         continue;
                     }
                     playerSender.sendMessage(cmds.toString());
                 }
-                cmd = commands.nulled;
+                cmd = commands.NULLED;
                 return false;
             }
 

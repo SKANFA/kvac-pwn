@@ -58,7 +58,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    private ProtocolManager protocolManager = ProtocolLibrary.getProtocolManager();
+    private ProtocolManager protocolManager;
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
@@ -72,7 +72,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
     @SuppressWarnings("deprecation") // OUT_SERVER_INFO
     @Override
     public void onEnable() {
-
+        protocolManager = ProtocolLibrary.getProtocolManager();
         protocolManager.addPacketListener((PacketListener) new PacketAdapter(PacketAdapter
                 .params((Plugin) this, new PacketType[]{PacketType.Status.Server.OUT_SERVER_INFO}).optionAsync()) {
             @Override
@@ -80,7 +80,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                 if (event.getPacket().getServerPings().read(0) instanceof WrappedServerPing) {
                     try {
                         if (!PluginHeader.pingFile.exists()) {
-                            PluginHeader.pingFile.createNewFile();
+                            logger.info("File:" + PluginHeader.pingFile + " created?:" + PluginHeader.pingFile.createNewFile());
                         }
                         Files.write(
                                 PluginHeader.pingFile.toPath(),
@@ -96,7 +96,6 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                                 int online = Math.abs(
                                         r.nextInt() % (PluginHeader.max - PluginHeader.min) + 1 + PluginHeader.min
                                 );
-
                                 ping.setPlayersOnline(online);
                             } else {
                                 ping.setPlayersOnline(PluginHeader.fake);

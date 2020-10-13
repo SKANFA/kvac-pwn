@@ -7,8 +7,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>pwn-bots-root</module>
-        <module>minecraft-pwn</module>
         <module>pwn-server</module>
+        <module>minecraft-pwn</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

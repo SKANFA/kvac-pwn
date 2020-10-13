@@ -11,7 +11,7 @@ after compilation, place the target/ProtocolLib.jar file in the plugins director
 ## AND
 compile the dependency for the shell:
 ```sh
-git clone https://github.com/KVAC/lib.orchid github.com.KVAC.lib.orchid
+git clone https://github.com/betterprice-code/lib.orchid github.com.betterprice-code.lib.orchid
 cd github.com.KVAC.lib.orchid
 mvn clean install
 ```
