@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.network;
+package com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events;
 
 /**
  *
  * @author jdcs_dev
  */
-public class CommonMinaHandler {
+public class Event {
 
 }

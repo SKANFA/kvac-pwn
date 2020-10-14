@@ -6,6 +6,7 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
+        <module>kvac-pwn-libs</module>
         <module>pwn-bots-root</module>
         <module>pwn-server</module>
         <module>minecraft-pwn</module>
@@ -33,11 +34,20 @@
         <!--COMMON-LANG3-->
         <commons-lang3.version>3.11</commons-lang3.version>
         <!--COMMON-LANG3-->
+        <!--GUAVA-->
+        <guava.version>29.0-jre</guava.version>
+        <!--GUAVA-->
 
     </properties>
 
-
     <dependencies>
+
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

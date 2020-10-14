@@ -10,6 +10,13 @@
     <artifactId>pwn-bot-common</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.github.kvac.pwn.kvac-pwn-root</groupId>
+            <artifactId>kvac-pwn-libs</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
 
 
     <build>
