@@ -30,10 +30,19 @@
         <minecraft.ProtocolLib.version>4.5.1</minecraft.ProtocolLib.version>
         <!--MINECRAFT-->
 
+        <!--COMMON-LANG3-->
+        <commons-lang3.version>3.11</commons-lang3.version>
+        <!--COMMON-LANG3-->
+
     </properties>
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

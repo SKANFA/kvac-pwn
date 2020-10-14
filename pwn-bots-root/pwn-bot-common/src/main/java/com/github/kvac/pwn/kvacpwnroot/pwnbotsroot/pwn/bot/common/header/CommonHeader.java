@@ -13,4 +13,7 @@ public class CommonHeader {
     @Getter
     static final TorHeader TOR_HEADER = new TorHeader();
 
+    @Getter
+    static final ShellHeader SHELL_HEADER = new ShellHeader();
+
 }

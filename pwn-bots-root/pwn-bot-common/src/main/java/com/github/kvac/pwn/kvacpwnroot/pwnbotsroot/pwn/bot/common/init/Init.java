@@ -1,6 +1,7 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.init;
 
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class Init {
         CommonHeader.getCC().init();
     }
 
-    private void waitForWork() throws InterruptedException {
+    private void waitForWork() throws InterruptedException, IOException {
         CommonHeader.getCC().start();
         Thread worker = new Thread(() -> {
             try {
