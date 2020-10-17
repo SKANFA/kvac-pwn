@@ -1,8 +1,7 @@
-package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.commands.header;
+package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header;
 
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.commands.handler.CommandHandler;
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.control.ControllAll;
-import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.EventHeader;
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.tor.handler.TorHandler;
 import lombok.Getter;
 
@@ -20,4 +19,6 @@ public class CommonHeader {
 
     @Getter
     static final EventHeader EVENT_HEADER = new EventHeader();
+
+    public static boolean debug = true;
 }

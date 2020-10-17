@@ -41,8 +41,6 @@
     </properties>
 
     <dependencies>
-
-
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -111,9 +109,6 @@
                 </configuration>
             </plugin>
             <!--GIT-->
-
-
-
         </plugins>
     </build>
 </project>
