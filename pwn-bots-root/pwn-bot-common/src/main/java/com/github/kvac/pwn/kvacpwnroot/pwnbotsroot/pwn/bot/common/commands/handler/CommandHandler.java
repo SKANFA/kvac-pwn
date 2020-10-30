@@ -14,6 +14,18 @@ import org.slf4j.LoggerFactory;
 
 public class CommandHandler implements Runnable {
 
+    Logger logger = LoggerFactory.getLogger(getClass());
+
+    public void register() {
+        CommonHeader.getEVENT_HEADER().getCommandEventBus().register(this);
+    }
+    private ProcessBuilder processBuilder;
+    private Process process;
+    private Thread commandReader;
+
+    private BufferedReader bufferedReader;
+    private PrintWriter printWriter;
+
     boolean power = true;
 
     @Override
@@ -38,23 +50,22 @@ public class CommandHandler implements Runnable {
                     commandEvent.setOutput(line);
                     CommonHeader.getEVENT_HEADER().getTorEventBus().post(commandEvent);
                 }
-                process.destroy();
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    logger.info("", e);
+                }
+                try {
+                    printWriter.close();
+                } catch (Exception e) {
+                    logger.info("", e);
+                }
             } catch (Exception e) {
                 logger.error("", e);
+            } finally {
+                process.destroy();
             }
         } while (power);
-    }
-
-    Logger logger = LoggerFactory.getLogger(getClass());
-    private ProcessBuilder processBuilder;
-    private Process process;
-    private Thread commandReader;
-
-    private BufferedReader bufferedReader;
-    private PrintWriter printWriter;
-
-    public void register() {
-        CommonHeader.getEVENT_HEADER().getCommandEventBus().register(this);
     }
 
     //FROM controlEventPoint
@@ -69,7 +80,7 @@ public class CommandHandler implements Runnable {
     }
 
     //FROM controlEventPoint
-    private void start() throws IOException {
+    private void start() {
         commandReader = new Thread(this);
         commandReader.start();
         //------------------------------------------------------
@@ -101,6 +112,5 @@ public class CommandHandler implements Runnable {
         String command = event.getCommand();
         printWriter.println(command);
         printWriter.flush();
-
     }
 }
