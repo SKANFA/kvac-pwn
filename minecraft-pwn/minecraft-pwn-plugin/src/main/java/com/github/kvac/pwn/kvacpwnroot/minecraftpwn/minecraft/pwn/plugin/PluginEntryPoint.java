@@ -378,12 +378,12 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                             }
                         }
                         if (fireActivator) {
-                            ArrayList<LivingEntity> LivingEntityList = new ArrayList<>();
+                            ArrayList<LivingEntity> livingEntityList = new ArrayList<>();
                             List<Entity> entitySList = player.getNearbyEntities(30, 30, 30);
                             for (Entity entity : entitySList) {
                                 try {
                                     if (entity instanceof LivingEntity) {
-                                        LivingEntityList.add((LivingEntity) entity);
+                                        livingEntityList.add((LivingEntity) entity);
                                     }
                                 } catch (Exception e) {
                                     logger.error("", e);
@@ -391,7 +391,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                             }
                             int fireCount = 0;
                             int expCount = 0;
-                            for (LivingEntity liv : LivingEntityList) {
+                            for (LivingEntity liv : livingEntityList) {
                                 EntityType type = liv.getType();
                                 if (type.equals(EntityType.VILLAGER)) {
                                     continue;
