@@ -13,8 +13,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommandAddART implements CommandExecutor {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     enum commands {
         GIVE, NULLED
@@ -85,11 +89,11 @@ public class CommandAddART implements CommandExecutor {
             int count = 1;
             try {
                 count = Integer.parseInt(cmdArgs[3]);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                e.getClass();
             }
-
-            for (int i = 0; i < cmdArgs.length; i++) {
-                playerSender.sendMessage(cmdArgs[i]);
+            for (String cmdArg : cmdArgs) {
+                playerSender.sendMessage(cmdArg);
             }
             playerSender.sendMessage("cmd:" + cmd + " кому:" + playerTo + " что:" + addWhat + " сколько:" + count);
 
@@ -104,8 +108,8 @@ public class CommandAddART implements CommandExecutor {
                 playerTo.sendMessage(playerSender.getName() + " выдал вам " + addWhat + " в кол-ве:" + count);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            logger.error("", e);
         }
         sender.sendMessage(errorBuilder.toString());
         return true;
