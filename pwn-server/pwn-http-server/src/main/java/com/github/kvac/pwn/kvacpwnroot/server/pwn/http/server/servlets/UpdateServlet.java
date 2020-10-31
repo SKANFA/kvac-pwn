@@ -11,12 +11,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author jdcs_dev
  */
 public class UpdateServlet extends HttpServlet {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
