@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RootServlet extends HttpServlet {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
+    final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
