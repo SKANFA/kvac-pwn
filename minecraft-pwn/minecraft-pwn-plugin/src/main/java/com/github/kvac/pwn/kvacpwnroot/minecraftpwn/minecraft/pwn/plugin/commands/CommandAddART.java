@@ -87,27 +87,32 @@ public class CommandAddART implements CommandExecutor {
             }
 
             int count = 1;
+
             try {
                 count = Integer.parseInt(cmdArgs[3]);
             } catch (NumberFormatException e) {
                 e.getClass();
             }
+
             for (String cmdArg : cmdArgs) {
                 playerSender.sendMessage(cmdArg);
             }
             playerSender.sendMessage("cmd:" + cmd + " кому:" + playerTo + " что:" + addWhat + " сколько:" + count);
 
-            if (addWhat.equals(ArtefactType.SLUDA)) {
-                playerTo.getInventory().addItem(new Sluda(count));
-                playerTo.sendMessage(playerSender.getName() + " выдал вам " + addWhat + " в кол-ве:" + count);
-            } else if (addWhat.equals(ArtefactType.OBJECT639)) {
-                playerTo.getInventory().addItem(new Object639(count));
-                playerTo.sendMessage(playerSender.getName() + " выдал вам " + addWhat + " в кол-ве:" + count);
-            } else if (addWhat.equals(ArtefactType.PILLOW)) {
-                playerTo.getInventory().addItem(new Pillow(count));
-                playerTo.sendMessage(playerSender.getName() + " выдал вам " + addWhat + " в кол-ве:" + count);
+            switch (addWhat) {
+                case SLUDA:
+                    playerTo.getInventory().addItem(new Sluda(count));
+                    break;
+                case OBJECT639:
+                    playerTo.getInventory().addItem(new Object639(count));
+                    break;
+                case PILLOW:
+                    playerTo.getInventory().addItem(new Pillow(count));
+                    break;
+                default:
+                    break;
             }
-
+            playerTo.sendMessage(playerSender.getName() + " выдал вам " + addWhat + " в кол-ве:" + count);
         } catch (IllegalArgumentException e) {
             logger.error("", e);
         }
