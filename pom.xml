@@ -6,6 +6,9 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
     <modules>
+        <module>github.com/betterprice-code/lib.orchid</module>
+        <module>github.com/fengyouchao/sockslib</module>
+
         <module>kvac-pwn-libs</module>
         <module>pwn-bots-root</module>
         <module>pwn-server</module>
