@@ -33,13 +33,16 @@ public class EncryptInit {
     Crypter crypter = new Crypter();
 
     Logger logger = LoggerFactory.getLogger(getClass());
+    @Getter
+    @Setter
     int bufferSize = 1024;
 
     public static void main(String[] args) {
         EncryptInit encryptInit = new EncryptInit();
         try {
             if (args.length != 3) {
-                encryptInit.logger.error(Arrays.toString(Actions.values()) + " From TO");
+                String errorMsg = Arrays.toString(Actions.values()) + " From TO";
+                encryptInit.logger.error(errorMsg);
                 System.exit(3);
             }
             Actions action = Actions.valueOf(args[0]);
