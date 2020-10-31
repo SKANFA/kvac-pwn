@@ -10,13 +10,11 @@
     <artifactId>pwn-http-server</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
-    <name>pwn-http-server-1.0.0</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <jakartaee>8.0</jakartaee>
 
 
 
@@ -30,7 +28,7 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${jakartaee}</version>
+            <version>${javax:javaee-api.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

@@ -1,0 +1,6 @@
+[submodule "github.com/betterprice-code/lib.orchid"]
+	path = github.com/betterprice-code/lib.orchid
+	url = https://github.com/betterprice-code/lib.orchid
+[submodule "github.com/fengyouchao/sockslib"]
+	path = github.com/fengyouchao/sockslib
+	url = https://github.com/fengyouchao/sockslib

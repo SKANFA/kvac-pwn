@@ -1,6 +1,6 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.init;
 
-import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.commands.header.CommonHeader;
+import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,8 +29,6 @@ public class Init {
     //##############################START#######################################
     //##########################################################################
     public void start() {
-        logger.info("start");
         CommonHeader.getCONTROLL_ALL().start();
-        logger.info("start-ok");
     }
 }

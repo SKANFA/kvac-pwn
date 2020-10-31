@@ -11,5 +11,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>pwn-http-server</module>
+        <module>pwn-server-n</module>
     </modules>
 </project>
