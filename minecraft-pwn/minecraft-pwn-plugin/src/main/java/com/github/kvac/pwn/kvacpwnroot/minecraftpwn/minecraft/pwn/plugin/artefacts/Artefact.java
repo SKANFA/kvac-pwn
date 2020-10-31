@@ -1,20 +1,21 @@
 package com.github.kvac.pwn.kvacpwnroot.minecraftpwn.minecraft.pwn.plugin.artefacts;
 
-import java.util.ArrayList;
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.ChatColor;
+import java.util.ArrayList;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.slf4j.LoggerFactory;
 
 public class Artefact extends ItemStack {
 
     public static enum ArtefactType {
         SLUDA, OBJECT639, PILLOW
     }
-
     @Getter
     @Setter
     private String artefactID = "ZERO";
@@ -25,7 +26,7 @@ public class Artefact extends ItemStack {
 
     @Getter
     @Setter
-    private List<String> loree = new ArrayList<String>();
+    private List<String> loree = new ArrayList<>();
 
     @Getter
     @Setter
@@ -64,16 +65,11 @@ public class Artefact extends ItemStack {
             //
             //
             //
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (SecurityException e) {
-            e.printStackTrace();
+        } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+            LoggerFactory.getLogger(MethodHandles.lookup().lookupClass()).error("", e);
         }
-        System.out.println(artefact.hasItemMeta() + ":" + artefact.getItemMeta());
+        String msg = artefact.hasItemMeta() + ":" + artefact.getItemMeta();
+        LoggerFactory.getLogger(MethodHandles.lookup().lookupClass()).info(msg);
     }
 
     public static ArtefactType recognizeArtedact(ItemStack itemStack) {
@@ -83,7 +79,7 @@ public class Artefact extends ItemStack {
                 ItemMeta meta = itemStack.getItemMeta();
                 if (meta != null) {
                     List<String> lore = meta.getLore();
-                    if (lore != null && lore.size() > 0) {
+                    if (lore != null && !lore.isEmpty()) {
                         // SLUDA
                         if (lore.get(0).equals(Sluda.lore0)) {
                             return ArtefactType.SLUDA;
@@ -95,7 +91,7 @@ public class Artefact extends ItemStack {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                LoggerFactory.getLogger(MethodHandles.lookup().lookupClass()).error("", e);
             }
         }
         return type;
