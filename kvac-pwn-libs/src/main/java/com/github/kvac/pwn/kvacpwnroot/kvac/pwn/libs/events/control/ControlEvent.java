@@ -1,5 +1,6 @@
-package com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events;
+package com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.control;
 
+import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.Event;
 import lombok.Getter;
 import lombok.Setter;
 

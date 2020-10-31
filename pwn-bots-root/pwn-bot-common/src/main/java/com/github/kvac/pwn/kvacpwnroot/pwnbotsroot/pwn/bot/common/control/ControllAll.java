@@ -1,7 +1,7 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.control;
 
-import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.ControlEvent;
-import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.ControlEvent.CONTROL_TYPE;
+import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.control.ControlEvent;
+import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.control.ControlEvent.CONTROL_TYPE;
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.commands.handler;
 
-import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.ControlEvent;
+import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.control.ControlEvent;
 
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
 import com.google.common.eventbus.Subscribe;

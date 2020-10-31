@@ -1,6 +1,6 @@
 package com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.tor.handler;
 
-import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.ControlEvent;
+import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.control.ControlEvent;
 import com.github.kvac.pwn.kvacpwnroot.kvac.pwn.libs.events.command.CommandEvent;
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.header.CommonHeader;
 import com.github.kvac.pwn.kvacpwnroot.pwnbotsroot.pwn.bot.common.tor.header.TorHeader;
