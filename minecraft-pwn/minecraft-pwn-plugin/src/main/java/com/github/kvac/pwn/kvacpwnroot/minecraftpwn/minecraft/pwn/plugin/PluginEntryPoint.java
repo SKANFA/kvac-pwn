@@ -124,13 +124,13 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
     @Override
     public void onLoad() {
         stopBackInventory();
-        System.out.println("JDCSPlugin.onLoad()");
+        logger.info("JDCSPlugin.onLoad()");
     }
 
     @Override
     public void onDisable() {
         stopBackInventory();
-        System.out.println("JDCSPlugin.onDisable()");
+        logger.info("JDCSPlugin.onDisable()");
     }
 
     @EventHandler
@@ -157,8 +157,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                 PlayerInventory inventory = player.getInventory();
 
                 ItemStack[] storage = inventory.getStorageContents();
-                for (int i = 0; i < storage.length; i++) {
-                    ItemStack itemStack = storage[i];
+                for (ItemStack itemStack : storage) {
                     if (itemStack != null) {
                         if (itemStack.getType().equals(Material.PHANTOM_MEMBRANE)) {
                             ArtefactType typeART = Artefact.recognizeArtedact(itemStack);
@@ -370,7 +369,7 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
                     ItemMeta meta = itemInmainHand.getItemMeta();
                     List<String> lore = meta.getLore();
 
-                    if (lore != null && lore.size() > 0) {
+                    if (lore != null && !lore.isEmpty()) {
                         boolean fireActivator = false;
                         for (String string : lore) {
                             if (string.equals(PluginHeader.getWEAPON_LORE())) {
@@ -433,5 +432,4 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
         artefactInventTask = new ArtefactInventTask(plugin);
         artefactInventTask.runTaskAsynchronously(this);
     }
-
 }
