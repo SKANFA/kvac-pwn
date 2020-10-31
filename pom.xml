@@ -35,9 +35,17 @@
         <commons-lang3.version>3.11</commons-lang3.version>
         <!--COMMON-LANG3-->
         <!--GUAVA-->
-        <guava.version>29.0-jre</guava.version>
+        <guava.version>30.0-jre</guava.version>
         <!--GUAVA-->
 
+        <!--PE_TOOLS-->
+        <com.kichik.pecoff4j:pecoff4j.version>0.3.2</com.kichik.pecoff4j:pecoff4j.version>
+        <!--PE_TOOLS-->
+
+
+        <!--WEB-->
+        <javax:javaee-api.version>8.0.1</javax:javaee-api.version>
+        <!--WEB-->
     </properties>
 
     <dependencies>

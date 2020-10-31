@@ -10,6 +10,14 @@
     <artifactId>kvac-pwn-libs</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.kichik.pecoff4j</groupId>
+            <artifactId>pecoff4j</artifactId>
+            <version>${com.kichik.pecoff4j:pecoff4j.version}</version>
+        </dependency>
+    </dependencies>
+
 
     <build>
         <plugins>
