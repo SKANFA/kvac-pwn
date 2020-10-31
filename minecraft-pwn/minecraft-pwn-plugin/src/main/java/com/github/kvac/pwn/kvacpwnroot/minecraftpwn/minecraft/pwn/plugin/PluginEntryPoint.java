@@ -273,7 +273,8 @@ public class PluginEntryPoint extends JavaPlugin implements Listener {
             ItemMeta meta = itemstack.getItemMeta();
             if (meta.hasLore()) {
                 List<String> lore = meta.getLore();
-                if (lore.size() > 0) {
+                if (lore != null
+                        && !lore.isEmpty()) {
                     String lore0 = lore.get(0);
                     // есть лор оружия
                     if (lore0.equals(PluginHeader.getWEAPON_LORE())) {
