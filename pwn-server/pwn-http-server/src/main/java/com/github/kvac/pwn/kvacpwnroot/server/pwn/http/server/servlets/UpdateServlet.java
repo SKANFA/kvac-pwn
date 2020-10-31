@@ -59,7 +59,11 @@ public class UpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IOException | ServletException e) {
+            logger.error("", e);
+        }
     }
 
     /**
@@ -73,7 +77,11 @@ public class UpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (IOException | ServletException e) {
+            logger.error("", e);
+        }
     }
 
     /**
